@@ -1,0 +1,7 @@
+export const srtipe = {
+  charges: {
+    create: jest
+      .fn()
+      .mockResolvedValue({})
+  }
+}

@@ -1,0 +1,66 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: ticketing-dev-304801
+  artifacts: 
+    - image: us.gcr.io/ticketing-dev-304801/auth
+    # - image: italojonaslima/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/ticketing-dev-304801/client
+    # - image: italojonaslima/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: us.gcr.io/ticketing-dev-304801/tickets
+    # - image: italojonaslima/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/ticketing-dev-304801/orders
+    # - image: italojonaslima/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/ticketing-dev-304801/expiration
+    # - image: italojonaslima/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/ticketing-dev-304801/payments
+    # - image: italojonaslima/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
