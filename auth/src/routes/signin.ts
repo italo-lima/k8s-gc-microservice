@@ -13,11 +13,11 @@ router.post(
   [
     body('email')
       .isEmail()
-      .withMessage('Email must be valid'),
+      .withMessage('Email must be valid!'),
     body('password')
       .trim()
       .notEmpty()
-      .withMessage('You must suppy a password')
+      .withMessage('You must suppy a password!')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
