@@ -34,7 +34,7 @@ router.post('/api/orders',
     const isReserved = await ticket.isReserved()
 
     if (isReserved) {
-      throw new BadRequestError('Ticket is already reserved!!')
+      throw new BadRequestError('Ticket is already reserved!')
     }
 
     const expiration = new Date()
